@@ -34,7 +34,7 @@ jobs:
       - name: build pipes
         working-directory: pipes
         run: |
-          for pipe in pipes/*; do
+          for pipe in *; do
             if [ -d "$pipe" ]; then
               echo "building $(basename $pipe)..."
               cd "$pipe"
@@ -42,10 +42,9 @@ jobs:
               bun install
               bun run build
               
+              cd ..
             fi
           done
           
           echo "listing all zip files:"
           ls -la *.zip || echo "no zip files found"
-
-   
